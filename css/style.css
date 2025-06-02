@@ -86,7 +86,7 @@ ol {
 
 .section-title span {
 	font-size: 16px;
-	color: #192A58;
+	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
 }
@@ -528,7 +528,7 @@ ol {
 }
 
 .hs-slider .hs-item .hi-text h1 strong {
-	color: #192A58;
+	color: #7294BA;
 }
 
 .hs-slider .hs-item .hi-text .primary-btn {
@@ -562,7 +562,7 @@ ol {
 	background: rgba(255, 255, 255, 0.1);
 	border-radius: 50%;
 	display: inline-block;
-	color: #192A58;
+	color: #ffffff;
 	line-height: 90px;
 	text-align: center;
 	-webkit-transition: all 0.3s;
@@ -623,7 +623,7 @@ ol {
 }
 
 .class-item .ci-text span {
-	color: #192A58;
+	color: #ffffff;
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -752,6 +752,10 @@ ol {
 	color: #444444;
 }
 
+.ps-item:hover .pi-price h2 {
+	color: #192A58;
+}
+
 .ps-item:hover ul li {
 	color: #111111;
 	font-weight: 600;
@@ -785,7 +789,7 @@ ol {
 
 .ps-item .pi-price h2 {
 	font-size: 60px;
-	color: #192A58;
+	color: #ffffff;
 	font-weight: 600;
 }
 
@@ -1188,7 +1192,7 @@ ol {
 
 .copyright-text a,
 .copyright-text i {
-	color: #192A58;
+	color: #ffffff;
 }
 
 /* ----------------------------------- Other Pages Styles ----------------------------------- */
@@ -1603,7 +1607,7 @@ ol {
 
 .class-timetable table tbody tr td.class-time {
 	font-size: 12px;
-	color: #192A58;
+	color: #ffffff;
 	background: #000000;
 	border: 1px solid #363636;
 }
