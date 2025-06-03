@@ -1,25 +1,21 @@
 'use strict';
 
 (function ($) {
-    // Função para aguardar o DOM estar completamente carregado
     function waitForDOM(callback) {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', callback);
         } else {
-            // DOM já está carregado, aguarda um pouco mais para Angular renderizar
             setTimeout(callback, 100);
         }
     }
 
-    // Função para aguardar elementos específicos do Angular
     function waitForAngularElements(callback) {
         let attempts = 0;
-        const maxAttempts = 50; // 5 segundos máximo
+        const maxAttempts = 50;
 
         function checkElements() {
             attempts++;
 
-            // Verifica se pelo menos alguns elementos principais existem
             const hasElements = $('.set-bg').length > 0 ||
                               $('#preloder').length > 0 ||
                               $('.canvas-open').length > 0 ||
@@ -35,7 +31,6 @@
         checkElements();
     }
 
-    // Função para inicialização segura de elementos
     function safeInitialize(selector, callback) {
         const element = $(selector);
         if (element.length) {
@@ -49,7 +44,6 @@
         }
     }
 
-    // Função para verificar se plugin está disponível
     function isPluginAvailable(pluginName) {
         if (typeof $ === 'undefined' || typeof $.fn[pluginName] === 'undefined') {
             console.warn(`${pluginName} plugin not loaded`);
@@ -58,7 +52,6 @@
         return true;
     }
 
-    // Função principal de inicialização
     function initializeComponents() {
         /*------------------
             Preloader
@@ -123,7 +116,6 @@
                     });
                 });
             } else {
-                // Fallback para versão jQuery do Masonry
                 if (isPluginAvailable('masonry')) {
                     $('.gallery').masonry({
                         itemSelector: '.gs-item',
