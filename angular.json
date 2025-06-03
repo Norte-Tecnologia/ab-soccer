@@ -26,9 +26,12 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/assets",
+              "src/favicon.ico",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets/fonts",
+                "output": "/assets/fonts/"
               }
             ],
             "styles": [
@@ -39,10 +42,15 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-bar-rating/dist/jquery.barrating.min.js",
+              "node_modules/magnific-popup/dist/jquery.magnific-popup.min.js",
+              "node_modules/slicknav/dist/jquery.slicknav.min.js",
+              "node_modules/owl.carousel/dist/owl.carousel.min.js",
+              "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
+              "node_modules/imagesloaded/imagesloaded.pkgd.min.js",
               "node_modules/jquery-waypoints/waypoints.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/wow.js/dist/wow.min.js",
-              "node_modules/owl.carousel/dist/owl.carousel.min.js",
               "src/shared/js/main.js"
             ]
           },
@@ -95,9 +103,12 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/assets",
+              "src/favicon.ico",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets/fonts",
+                "output": "/assets/fonts/"
               }
             ],
             "styles": [
@@ -108,10 +119,15 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-bar-rating/dist/jquery.barrating.min.js",
+              "node_modules/magnific-popup/dist/jquery.magnific-popup.min.js",
+              "node_modules/slicknav/dist/jquery.slicknav.min.js",
+              "node_modules/owl.carousel/dist/owl.carousel.min.js",
+              "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
+              "node_modules/imagesloaded/imagesloaded.pkgd.min.js",
               "node_modules/jquery-waypoints/waypoints.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/wow.js/dist/wow.min.js",
-              "node_modules/owl.carousel/dist/owl.carousel.min.js",
               "src/shared/js/main.js"
             ]
           }

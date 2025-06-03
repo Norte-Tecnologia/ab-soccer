@@ -1,1 +1,107 @@
 /* You can add global styles to this file, and also import other style files */
+@use "./shared/styles/custom-bootstrap" as *;
+@use "../src/shared/styles/colors.scss" as colors;
+
+:root {
+  --bs-primary: #0f5f07;
+  --bs-secondary: #d7d7d9;
+  --bs-success: #3bae7c;
+
+  --bs-btn-color: #3bae7c;
+  --bs-btn-border-color: #3bae7c;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #19533a;
+  --bs-btn-hover-border-color: #19533a;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #19533a;
+  --bs-btn-active-border-color: #19533a;
+  --bs-btn-disabled-color: #3bae7c;
+  --bs-btn-disabled-border-color: #3bae7c;
+
+  --font-body: "Inter", sans-serif;
+  --font-headings: "Saira", sans-serif;
+  --primary: #0f5f07;
+  --secondary: #d7d7d9;
+  --third: #2e0652;
+  --light: #f8f8f9;
+  --dark: #044121;
+  --green-light: #3bae7c;
+}
+
+body {
+  font-family: var(--font-body);
+  color: $body-color;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-headings);
+  font-weight: $headings-font-weight;
+  color: $headings-color;
+}
+
+.toast-container {
+  position: fixed;
+  z-index: 999999;
+  width: auto;
+  max-width: 350px;
+  top: 20px;
+  right: 100px;
+}
+
+.toast-container .ngx-toastr {
+  position: relative;
+  margin: 0 0 15px 0;
+  padding: 15px 40px 15px 15px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: colors.$color-white;
+  border: 1px solid colors.$color-white;
+}
+
+.toast-close-button {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: colors.$color-white;
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.toast-close-button:hover {
+  color: colors.$color-gray;
+}
+
+.toast-success::before,
+.toast-error::before,
+.toast-info::before,
+.toast-warning::before {
+  display: none;
+}
+
+.toast-success {
+  background-color: colors.$color-green !important;
+}
+
+.toast-error {
+  background-color: colors.$color-red !important;
+}
+
+.toast-info {
+  background-color: colors.$color-light-green !important;
+}
+
+.toast-warning {
+  background-color: colors.$color-yellow !important;
+}
+
+.toast-progress {
+  margin-top: 10px;
+  height: 4px;
+  background: colors.$color-white;
+}

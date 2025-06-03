@@ -1,0 +1,19 @@
+@use "bootstrap/scss/functions" as *;
+
+$dark: #044121;
+$border-radius: 6px;
+
+$font-family-base: 'Inter', sans-serif;
+$headings-font-family: 'Saira', sans-serif;
+$body-color: $dark;
+$headings-color: $dark;
+$headings-font-weight: 700;
+$display-font-weight: 700;
+$enable-responsive-font-sizes: true;
+$border-radius: $border-radius;
+$border-radius-sm: $border-radius;
+$border-radius-lg: $border-radius;
+$link-decoration: none;
+$enable-negative-margins: true;
+
+@use "bootstrap/scss/bootstrap";
