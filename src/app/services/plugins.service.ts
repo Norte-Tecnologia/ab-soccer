@@ -1,0 +1,334 @@
+import { Injectable } from '@angular/core';
+
+declare var $: any;
+declare var Masonry: any;
+declare var imagesLoaded: any;
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PluginsService {
+
+  private safeInitialize(selector: string, callback: (element: any) => void): void {
+    const element = $(selector);
+    if (element.length) {
+      try {
+        callback(element);
+      } catch (error) {
+        console.error(`Error initializing ${selector}:`, error);
+      }
+    }
+  }
+
+  private isPluginAvailable(pluginName: string): boolean {
+    if (typeof $ === 'undefined' || typeof $.fn[pluginName] === 'undefined') {
+      console.warn(`${pluginName} plugin not loaded`);
+      return false;
+    }
+    return true;
+  }
+
+  initializeBackgroundImages(): void {
+    // Usar MutationObserver para detectar mudanças no DOM
+    const observer = new MutationObserver((mutations) => {
+      this.processBackgroundImages();
+    });
+
+    // Observar mudanças em todo o documento
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // Processar inicialmente
+    this.processBackgroundImages();
+  }
+
+  private processBackgroundImages(): void {
+    const elements = document.querySelectorAll('.set-bg');
+
+    elements.forEach((element) => {
+      if (element instanceof HTMLElement) {
+        // Forma correta de acessar propriedades do dataset no TypeScript
+        const bg = element.dataset['setbg'];
+        // Alternativa: const bg = element.getAttribute('data-setbg');
+
+        if (bg && !element.style.backgroundImage) {
+          element.style.backgroundImage = `url(${bg})`;
+          // Forçar repaint
+          element.style.display = 'none';
+          element.offsetHeight; // Trigger reflow
+          element.style.display = '';
+        }
+      }
+    });
+  }
+
+  initializeOwlCarousel(selector: string, options: any = {}): void {
+    this.safeInitialize(selector, () => {
+      if (this.isPluginAvailable('owlCarousel')) {
+        // Destroy existing carousel if it exists
+        const existingCarousel = $(selector);
+        if (existingCarousel.hasClass('owl-loaded')) {
+          existingCarousel.trigger('destroy.owl.carousel');
+          existingCarousel.removeClass('owl-loaded owl-drag');
+        }
+
+        // Initialize new carousel
+        $(selector).owlCarousel(options);
+      }
+    });
+  }
+
+  initializeCanvasMenu(): void {
+    // Remove existing event listeners to avoid duplicates
+    $(".canvas-open").off('click.canvas');
+    $(".canvas-close, .offcanvas-menu-overlay").off('click.canvas');
+
+    this.safeInitialize('.canvas-open', () => {
+      $(".canvas-open").on('click.canvas', function () {
+        $(".offcanvas-menu-wrapper").addClass("show-offcanvas-menu-wrapper");
+        $(".offcanvas-menu-overlay").addClass("active");
+      });
+    });
+
+    this.safeInitialize('.canvas-close, .offcanvas-menu-overlay', () => {
+      $(".canvas-close, .offcanvas-menu-overlay").on('click.canvas', function () {
+        $(".offcanvas-menu-wrapper").removeClass("show-offcanvas-menu-wrapper");
+        $(".offcanvas-menu-overlay").removeClass("active");
+      });
+    });
+  }
+
+  initializeSearchModal(): void {
+    // Remove existing event listeners
+    $('.search-switch').off('click.search');
+    $('.search-close-switch').off('click.search');
+
+    this.safeInitialize('.search-switch', () => {
+      $('.search-switch').on('click.search', function () {
+        $('.search-model').fadeIn(400);
+      });
+    });
+
+    this.safeInitialize('.search-close-switch', () => {
+      $('.search-close-switch').on('click.search', function () {
+        $('.search-model').fadeOut(400, function () {
+          $('#search-input').val('');
+        });
+      });
+    });
+  }
+
+  initializeMasonry(): void {
+    this.safeInitialize('.gallery', () => {
+      if (typeof Masonry !== 'undefined' && typeof imagesLoaded !== 'undefined') {
+        $('.gallery').imagesLoaded(function () {
+          $('.gallery').masonry({
+            itemSelector: '.gs-item',
+            columnWidth: '.grid-sizer',
+            gutter: 10
+          });
+        });
+      } else if (this.isPluginAvailable('masonry')) {
+        $('.gallery').masonry({
+          itemSelector: '.gs-item',
+          columnWidth: '.grid-sizer',
+          gutter: 10
+        });
+      }
+    });
+  }
+
+  initializeMobileMenu(): void {
+    this.safeInitialize('.mobile-menu', () => {
+      if (this.isPluginAvailable('slicknav')) {
+        // Destroy existing slicknav if it exists
+        if ($('.mobile-menu').hasClass('slicknav_menu')) {
+          $('.mobile-menu').slicknav('destroy');
+        }
+
+        $(".mobile-menu").slicknav({
+          prependTo: '#mobile-menu-wrap',
+          allowParentLinks: true
+        });
+      }
+    });
+  }
+
+  initializeMagnificPopup(): void {
+    this.safeInitialize('.image-popup', () => {
+      if (this.isPluginAvailable('magnificPopup')) {
+        $('.image-popup').magnificPopup({
+          type: 'image'
+        });
+      }
+    });
+
+    this.safeInitialize('.video-popup', () => {
+      if (this.isPluginAvailable('magnificPopup')) {
+        $('.video-popup').magnificPopup({
+          type: 'iframe'
+        });
+      }
+    });
+  }
+
+  initializeVideoControls(): void {
+    this.safeInitialize('#video', () => {
+      const video = document.getElementById('video');
+      const playButton = document.getElementById('playButton');
+      const pauseButton = document.getElementById('pauseButton');
+
+      if (video && playButton && pauseButton) {
+        // Remove existing event listeners
+        playButton.removeEventListener('click', this.playVideo);
+        pauseButton.removeEventListener('click', this.pauseVideo);
+        video.removeEventListener('ended', this.videoEnded);
+
+        // Add new event listeners
+        playButton.addEventListener('click', this.playVideo);
+        pauseButton.addEventListener('click', this.pauseVideo);
+        video.addEventListener('ended', this.videoEnded);
+      }
+    });
+  }
+
+  private playVideo = () => {
+    const video = document.getElementById('video') as HTMLVideoElement;
+    const playButton = document.getElementById('playButton');
+    const pauseButton = document.getElementById('pauseButton');
+
+    if (video && playButton && pauseButton) {
+      video.play();
+      playButton.style.display = 'none';
+      pauseButton.style.display = 'flex';
+    }
+  }
+
+  private pauseVideo = () => {
+    const video = document.getElementById('video') as HTMLVideoElement;
+    const playButton = document.getElementById('playButton');
+    const pauseButton = document.getElementById('pauseButton');
+
+    if (video && playButton && pauseButton) {
+      video.pause();
+      playButton.style.display = 'flex';
+      pauseButton.style.display = 'none';
+    }
+  }
+
+  private videoEnded = () => {
+    const playButton = document.getElementById('playButton');
+    const pauseButton = document.getElementById('pauseButton');
+
+    if (playButton && pauseButton) {
+      playButton.style.display = 'flex';
+      pauseButton.style.display = 'none';
+    }
+  }
+
+  initializeBarfiller(): void {
+    ['#bar1', '#bar2', '#bar3'].forEach((selector) => {
+      this.safeInitialize(selector, () => {
+        if (this.isPluginAvailable('barfiller')) {
+          $(selector).barfiller({
+            barColor: '#ffffff',
+            duration: 2000
+          });
+        }
+      });
+    });
+  }
+
+  initializeTableControls(): void {
+    // Remove existing event listeners
+    $('.table-controls ul li').off('click.table');
+
+    this.safeInitialize('.table-controls ul li', () => {
+      $('.table-controls ul li').on('click.table', () => {
+        const tsfilter = $(this).data('tsfilter');
+        $('.table-controls ul li').removeClass('active');
+        $(this).addClass('active');
+
+        if (tsfilter == 'all') {
+          $('.class-timetable').removeClass('filtering');
+          $('.ts-meta').removeClass('show');
+        } else {
+          $('.class-timetable').addClass('filtering');
+        }
+        $('.ts-meta').each(() => {
+          $(this).removeClass('show');
+          if ($(this).data('tsmeta') == tsfilter) {
+            $(this).addClass('show');
+          }
+        });
+      });
+    });
+  }
+
+  // Method to initialize all common components
+  initializeCommonComponents(): void {
+    // Verificar e inicializar apenas os componentes que existem na página atual
+    if ($('.set-bg').length) this.initializeBackgroundImages();
+    if ($('.canvas-open').length) this.initializeCanvasMenu();
+    if ($('.search-switch').length) this.initializeSearchModal();
+    if ($('.mobile-menu').length) this.initializeMobileMenu();
+    if ($('.image-popup').length || $('.video-popup').length) this.initializeMagnificPopup();
+    if ($('#video').length) this.initializeVideoControls();
+    if ($('#bar1').length || $('#bar2').length || $('#bar3').length) this.initializeBarfiller();
+    if ($('.table-controls ul li').length) this.initializeTableControls();
+
+    // Componentes específicos de página
+    if ($('.hs-slider').length) {
+      const carouselOptions = {
+        loop: true,
+        margin: 0,
+        nav: true,
+        items: 1,
+        dots: false,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: false
+      };
+      this.initializeOwlCarousel('.hs-slider', carouselOptions);
+    }
+
+    if ($('.gallery').length) this.initializeMasonry();
+  }
+
+  cleanupPageSpecificComponents(): void {
+    // Destruir componentes específicos antes de sair da página
+    if ($('.hs-slider').length && $('.hs-slider').hasClass('owl-loaded')) {
+      $('.hs-slider').trigger('destroy.owl.carousel');
+      $('.hs-slider').removeClass('owl-loaded owl-drag');
+    }
+
+    // Adicione aqui a limpeza de outros componentes específicos se necessário
+  }
+
+  // Cleanup method to remove event listeners
+  cleanup(): void {
+    $(".canvas-open").off('click.canvas');
+    $(".canvas-close, .offcanvas-menu-overlay").off('click.canvas');
+    $('.search-switch').off('click.search');
+    $('.search-close-switch').off('click.search');
+    $('.table-controls ul li').off('click.table');
+
+    // Destroy owl carousel instances
+    $('.owl-carousel').each(() => {
+      if ($(this).hasClass('owl-loaded')) {
+        $(this).trigger('destroy.owl.carousel');
+        $(this).removeClass('owl-loaded owl-drag');
+      }
+    });
+
+    // Destroy slicknav instances
+    if ($('.mobile-menu').hasClass('slicknav_menu')) {
+      $('.mobile-menu').slicknav('destroy');
+    }
+  }
+}

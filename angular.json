@@ -38,6 +38,7 @@
               "src/styles.scss",
               "node_modules/animate.css/animate.min.css",
               "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
+              "src/shared/styles/flaticon.css",
               "src/shared/styles/style.css"
             ],
             "scripts": [
@@ -115,6 +116,7 @@
               "src/styles.scss",
               "node_modules/animate.css/animate.min.css",
               "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
+              "src/shared/styles/flaticon.css",
               "src/shared/styles/style.css"
             ],
             "scripts": [
