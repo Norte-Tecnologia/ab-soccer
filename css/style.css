@@ -1235,7 +1235,7 @@ ol {
 
 .breadcrumb-text .bt-option span {
 	font-size: 18px;
-	color: #192A58;
+	color: #ffffff;
 	font-weight: 700;
 }
 
@@ -1394,8 +1394,8 @@ ol {
 
 .ss-text {
 	background: #252525;
-	padding: 72px 30px;
-	height: 293px;
+	padding: 10px 30px;
+	height: 195px;
 	position: relative;
 	z-index: 1;
 	-webkit-transition: all 0.3s;
