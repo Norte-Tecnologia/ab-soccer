@@ -1,0 +1,26 @@
+<div [ngClass]="{'page-header-404': pageName === '404'}"
+  [ngStyle]="{'background-image': 'url(' + backgroundImage + ')', 'background-size': 'cover', 'background-position': 'center'}"
+  data-wow-delay="0.1s">
+  <div class="breadcrumb-section set-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="breadcrumb-text">
+            <h2>Sobre nós</h2>
+            <nav aria-label="breadcrumb animated slideInDown" *ngIf="breadcrumbs.length > 0">
+              <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item" *ngFor="let item of breadcrumbs">
+                  <a *ngIf="item.url" class="text-white" [routerLink]="item.url">{{item.label}}</a>
+                  <span *ngIf="!item.url" [class.text-secondary]="item.isActive" [class.text-white]="!item.isActive"
+                    [class.active-breadcrumb]="item.isActive">
+                    {{item.label}}
+                  </span>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

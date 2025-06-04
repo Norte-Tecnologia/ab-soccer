@@ -3,29 +3,14 @@
 @use "../src/shared/styles/colors.scss" as colors;
 
 :root {
-  --bs-primary: #0f5f07;
-  --bs-secondary: #d7d7d9;
-  --bs-success: #3bae7c;
-
-  --bs-btn-color: #3bae7c;
-  --bs-btn-border-color: #3bae7c;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #19533a;
-  --bs-btn-hover-border-color: #19533a;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #19533a;
-  --bs-btn-active-border-color: #19533a;
-  --bs-btn-disabled-color: #3bae7c;
-  --bs-btn-disabled-border-color: #3bae7c;
-
   --font-body: "Muli", sans-serif;
   --font-headings: "Oswald", sans-serif;
-  --primary: #0f5f07;
+  --primary: #192A58;
   --secondary: #d7d7d9;
   --third: #2e0652;
   --light: #f8f8f9;
-  --dark: #044121;
-  --green-light: #3bae7c;
+  --dark: #192A58;
+  --blue-light: #7294BA;
 }
 
 body {
@@ -85,7 +70,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .toast-success {
-  background-color: colors.$color-green !important;
+  background-color: colors.$color-dark-blue !important;
 }
 
 .toast-error {
@@ -93,7 +78,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .toast-info {
-  background-color: colors.$color-light-green !important;
+  background-color: colors.$color-light-blue !important;
 }
 
 .toast-warning {

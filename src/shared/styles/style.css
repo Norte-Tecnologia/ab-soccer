@@ -1227,12 +1227,9 @@ ol {
 	margin-right: 20px;
 }
 
-.breadcrumb-text .bt-option a:after {
-	position: absolute;
-	right: -14px;
-	top: 6px;
-	font-family: "FontAwesome";
-	content: "";
+.breadcrumb-item a:after {
+	content: ">";
+  margin: 0px -12px 0px 10px;
 	font-size: 13px;
 	font-weight: 400;
 }
