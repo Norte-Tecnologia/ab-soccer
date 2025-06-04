@@ -9,4 +9,8 @@ import { RouterLink } from '@angular/router';
 })
 export class RodapeComponent {
 
+  getTextCopy(): string {
+    return `${new Date().getFullYear()} Todos os direitos reservados. By`
+  }
+
 }
