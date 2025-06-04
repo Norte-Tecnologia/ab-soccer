@@ -29,7 +29,7 @@ export class PluginsService {
   }
 
   initializeBackgroundImages(): void {
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver(() => {
       this.processBackgroundImages();
     });
 
