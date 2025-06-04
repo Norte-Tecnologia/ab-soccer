@@ -1,0 +1,63 @@
+/* Ajustes para a seção de serviços */
+.services-section .ss-pic img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.services-section .ss-text {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-video-container-services {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  margin: 20px 0;
+}
+
+.about-video-container-services .about-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 95%;
+  object-fit: cover;
+}
+
+.play-btn, .pause-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 70px;
+  width: 70px;
+  background: #192A58;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 36px;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .services-section .ss-pic img,
+  .services-section .ss-text {
+    height: 200px;
+  }
+
+  .services-section .ss-text {
+    padding: 20px;
+  }
+
+  .about-video-container-services {
+    padding-top: 75%;
+  }
+}
