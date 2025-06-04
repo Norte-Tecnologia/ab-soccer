@@ -1143,6 +1143,7 @@ ol {
 	font-size: 14px;
 	color: #c4c4c4;
 	line-height: 30px;
+  text-decoration: none;
 }
 
 .fs-widget .fw-recent {
