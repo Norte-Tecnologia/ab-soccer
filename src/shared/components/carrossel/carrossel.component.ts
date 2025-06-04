@@ -9,31 +9,26 @@ import { PluginsService } from '../../../app/services/plugins.service';
 })
 export class CarrosselComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(private pluginsService: PluginsService) {}
+  constructor(private pluginsService: PluginsService) { }
 
   ngOnInit(): void {
-    // Componente inicializado
   }
 
   ngAfterViewInit(): void {
-    // Garantir que o DOM esteja completamente renderizado
     setTimeout(() => {
       this.initializeCarousel();
     }, 300);
   }
 
   ngOnDestroy(): void {
-    // Cleanup do carousel quando o componente for destruído
     this.destroyCarousel();
   }
 
   private initializeCarousel(): void {
-    // Primeiro inicializar as imagens de background com delay maior
     setTimeout(() => {
       this.pluginsService.initializeBackgroundImages();
     }, 100);
 
-    // Depois inicializar o carousel
     setTimeout(() => {
       const carouselOptions = {
         loop: true,
@@ -56,7 +51,6 @@ export class CarrosselComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.pluginsService.initializeOwlCarousel('.hs-slider', carouselOptions);
 
-      // Forçar re-render das imagens após carousel estar pronto
       setTimeout(() => {
         this.pluginsService.initializeBackgroundImages();
       }, 200);
@@ -64,7 +58,6 @@ export class CarrosselComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private destroyCarousel(): void {
-    // Usar jQuery para destruir o carousel
     if (typeof $ !== 'undefined') {
       const carousel = $('.hs-slider');
       if (carousel.hasClass('owl-loaded')) {

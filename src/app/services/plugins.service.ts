@@ -29,18 +29,15 @@ export class PluginsService {
   }
 
   initializeBackgroundImages(): void {
-    // Usar MutationObserver para detectar mudanças no DOM
     const observer = new MutationObserver((mutations) => {
       this.processBackgroundImages();
     });
 
-    // Observar mudanças em todo o documento
     observer.observe(document.body, {
       childList: true,
       subtree: true
     });
 
-    // Processar inicialmente
     this.processBackgroundImages();
   }
 
@@ -49,15 +46,12 @@ export class PluginsService {
 
     elements.forEach((element) => {
       if (element instanceof HTMLElement) {
-        // Forma correta de acessar propriedades do dataset no TypeScript
         const bg = element.dataset['setbg'];
-        // Alternativa: const bg = element.getAttribute('data-setbg');
 
         if (bg && !element.style.backgroundImage) {
           element.style.backgroundImage = `url(${bg})`;
-          // Forçar repaint
           element.style.display = 'none';
-          element.offsetHeight; // Trigger reflow
+          element.offsetHeight;
           element.style.display = '';
         }
       }
@@ -67,21 +61,18 @@ export class PluginsService {
   initializeOwlCarousel(selector: string, options: any = {}): void {
     this.safeInitialize(selector, () => {
       if (this.isPluginAvailable('owlCarousel')) {
-        // Destroy existing carousel if it exists
         const existingCarousel = $(selector);
         if (existingCarousel.hasClass('owl-loaded')) {
           existingCarousel.trigger('destroy.owl.carousel');
           existingCarousel.removeClass('owl-loaded owl-drag');
         }
 
-        // Initialize new carousel
         $(selector).owlCarousel(options);
       }
     });
   }
 
   initializeCanvasMenu(): void {
-    // Remove existing event listeners to avoid duplicates
     $(".canvas-open").off('click.canvas');
     $(".canvas-close, .offcanvas-menu-overlay").off('click.canvas');
 
@@ -101,7 +92,6 @@ export class PluginsService {
   }
 
   initializeSearchModal(): void {
-    // Remove existing event listeners
     $('.search-switch').off('click.search');
     $('.search-close-switch').off('click.search');
 
@@ -143,7 +133,6 @@ export class PluginsService {
   initializeMobileMenu(): void {
     this.safeInitialize('.mobile-menu', () => {
       if (this.isPluginAvailable('slicknav')) {
-        // Destroy existing slicknav if it exists
         if ($('.mobile-menu').hasClass('slicknav_menu')) {
           $('.mobile-menu').slicknav('destroy');
         }
@@ -181,12 +170,10 @@ export class PluginsService {
       const pauseButton = document.getElementById('pauseButton');
 
       if (video && playButton && pauseButton) {
-        // Remove existing event listeners
         playButton.removeEventListener('click', this.playVideo);
         pauseButton.removeEventListener('click', this.pauseVideo);
         video.removeEventListener('ended', this.videoEnded);
 
-        // Add new event listeners
         playButton.addEventListener('click', this.playVideo);
         pauseButton.addEventListener('click', this.pauseVideo);
         video.addEventListener('ended', this.videoEnded);
@@ -242,7 +229,6 @@ export class PluginsService {
   }
 
   initializeTableControls(): void {
-    // Remove existing event listeners
     $('.table-controls ul li').off('click.table');
 
     this.safeInitialize('.table-controls ul li', () => {
@@ -267,9 +253,7 @@ export class PluginsService {
     });
   }
 
-  // Method to initialize all common components
   initializeCommonComponents(): void {
-    // Verificar e inicializar apenas os componentes que existem na página atual
     if ($('.set-bg').length) this.initializeBackgroundImages();
     if ($('.canvas-open').length) this.initializeCanvasMenu();
     if ($('.search-switch').length) this.initializeSearchModal();
@@ -279,7 +263,6 @@ export class PluginsService {
     if ($('#bar1').length || $('#bar2').length || $('#bar3').length) this.initializeBarfiller();
     if ($('.table-controls ul li').length) this.initializeTableControls();
 
-    // Componentes específicos de página
     if ($('.hs-slider').length) {
       const carouselOptions = {
         loop: true,
@@ -301,16 +284,13 @@ export class PluginsService {
   }
 
   cleanupPageSpecificComponents(): void {
-    // Destruir componentes específicos antes de sair da página
     if ($('.hs-slider').length && $('.hs-slider').hasClass('owl-loaded')) {
       $('.hs-slider').trigger('destroy.owl.carousel');
       $('.hs-slider').removeClass('owl-loaded owl-drag');
     }
 
-    // Adicione aqui a limpeza de outros componentes específicos se necessário
   }
 
-  // Cleanup method to remove event listeners
   cleanup(): void {
     $(".canvas-open").off('click.canvas');
     $(".canvas-close, .offcanvas-menu-overlay").off('click.canvas');
@@ -318,7 +298,6 @@ export class PluginsService {
     $('.search-close-switch').off('click.search');
     $('.table-controls ul li').off('click.table');
 
-    // Destroy owl carousel instances
     $('.owl-carousel').each(() => {
       if ($(this).hasClass('owl-loaded')) {
         $(this).trigger('destroy.owl.carousel');
@@ -326,7 +305,6 @@ export class PluginsService {
       }
     });
 
-    // Destroy slicknav instances
     if ($('.mobile-menu').hasClass('slicknav_menu')) {
       $('.mobile-menu').slicknav('destroy');
     }

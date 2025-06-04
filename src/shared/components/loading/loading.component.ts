@@ -11,9 +11,8 @@ export class LoadingComponent implements OnInit {
   isLoading = true;
 
   ngOnInit(): void {
-    // Simula o carregamento da página
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000); // Ajuste este tempo conforme necessário
+    }, 2000);
   }
 }

@@ -12,7 +12,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private pluginsService: PluginsService) {}
 
   ngOnInit(): void {
-    // Pequeno delay para garantir que o DOM esteja pronto
     setTimeout(() => {
       this.pluginsService.initializeCanvasMenu();
       this.pluginsService.initializeMobileMenu();
@@ -20,7 +19,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Cleanup quando o componente for destruído
     this.pluginsService.cleanup();
   }
 
