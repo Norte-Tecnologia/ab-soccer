@@ -13,6 +13,6 @@ export class LoadingComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 1000);
   }
 }

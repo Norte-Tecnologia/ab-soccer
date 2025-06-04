@@ -4,10 +4,11 @@ import { OQueFazemosComponent } from "../../../shared/components/o-que-fazemos/o
 import { TimeComponent } from "../../../shared/components/time/time.component";
 import { FeedbacksComponent } from "../../../shared/components/feedbacks/feedbacks.component";
 import { PageBreadcrumbHeaderComponent } from "../../../shared/components/page-breadcrumb-header/page-breadcrumb-header.component";
+import { LoadingComponent } from "../../../shared/components/loading/loading.component";
 
 @Component({
   selector: 'app-page-sobre',
-  imports: [PorQueEscolherComponent, OQueFazemosComponent, TimeComponent, FeedbacksComponent, PageBreadcrumbHeaderComponent],
+  imports: [PorQueEscolherComponent, OQueFazemosComponent, TimeComponent, FeedbacksComponent, PageBreadcrumbHeaderComponent, LoadingComponent],
   templateUrl: './page-sobre.component.html',
   styleUrl: './page-sobre.component.scss'
 })

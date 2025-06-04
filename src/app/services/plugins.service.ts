@@ -145,6 +145,30 @@ export class PluginsService {
     });
   }
 
+  initializeTestimonialSlider(): void {
+  this.safeInitialize('.ts_slider', () => {
+    if (this.isPluginAvailable('owlCarousel')) {
+      const existingCarousel = $('.ts_slider');
+      if (existingCarousel.hasClass('owl-loaded')) {
+        existingCarousel.trigger('destroy.owl.carousel');
+        existingCarousel.removeClass('owl-loaded owl-drag');
+      }
+
+      $('.ts_slider').owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 1,
+        dots: false,
+        nav: true,
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true
+      });
+    }
+  });
+}
+
   initializeMagnificPopup(): void {
     this.safeInitialize('.image-popup', () => {
       if (this.isPluginAvailable('magnificPopup')) {
