@@ -844,6 +844,7 @@ ol {
 .gallery-section {
 	background: #151515;
 	overflow: hidden;
+  padding-top: 20px;
 }
 
 .gallery-section.gallery-page {
