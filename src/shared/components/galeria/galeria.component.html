@@ -1,23 +1,21 @@
 <div class="gallery-section">
   <div class="gallery">
     <div class="grid-sizer"></div>
-    <div class="gs-item grid-wide set-bg" data-setbg="assets/img/gallery/gallery-1.jpg">
-      <a href="assets/img/gallery/gallery-7.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+    @for (image of images; track image) {
+    <div class="gs-item" [class.grid-wide]="image.wide" [style.background-image]="'url(' + image.src + ')'">
+      <div class="image-overlay" (click)="openModal(image.src)">
+        <i class="fa fa-image"></i>
+      </div>
     </div>
-    <div class="gs-item set-bg" data-setbg="assets/img/gallery/gallery-7.jpg">
-      <a href="assets/img/gallery/gallery-7.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-    </div>
-    <div class="gs-item set-bg" data-setbg="assets/img/gallery/gallery-11.jpg">
-      <a href="assets/img/gallery/gallery-11.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-    </div>
-    <div class="gs-item set-bg" data-setbg="assets/img/gallery/gallery-8.jpg">
-      <a href="assets/img/gallery/gallery-8.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-    </div>
-    <div class="gs-item set-bg" data-setbg="assets/img/gallery/gallery-10.jpg">
-      <a href="assets/img/gallery/gallery-10.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-    </div>
-    <div class="gs-item grid-wide set-bg" data-setbg="assets/img/gallery/gallery-2.jpg">
-      <a href="assets/img/gallery/gallery-2.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-    </div>
+    }
   </div>
 </div>
+
+@if (modalVisible) {
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-modal" (click)="closeModal()">&times;</button>
+    <img [src]="selectedImage" alt="Imagem ampliada">
+  </div>
+</div>
+}
