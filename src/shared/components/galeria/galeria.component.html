@@ -2,13 +2,13 @@
   <div class="gallery">
     <div class="grid-sizer"></div>
     @for (image of images; track image) {
-    @if (pageRegistros) {
-    <div class="gs-item" [class.grid-wide]="image.wide" [style.background-image]="'url(' + image.src + ')'">
-      <div class="image-overlay" (click)="openModal(image.src)">
-        <i class="fa fa-image"></i>
-      </div>
-    </div>
-    }
+      @if (image.exibir || pageRegistros) {
+        <div class="gs-item" [class.grid-wide]="image.wide" [style.background-image]="'url(' + image.src + ')'">
+          <div class="image-overlay" (click)="openModal(image.src)">
+            <i class="fa fa-image"></i>
+          </div>
+        </div>
+      }
     }
   </div>
 </div>

@@ -13,21 +13,21 @@ export class GaleriaComponent {
 
   images = [
     { src: 'assets/img/gallery/gallery-1.jpg', wide: true, exibir: true },
-    { src: 'assets/img/gallery/gallery-3.jpg', wide: true, exibir: this.pageRegistros },
-    { src: 'assets/img/gallery/gallery-4.jpg', wide: true, exibir: this.pageRegistros },
-    { src: 'assets/img/gallery/gallery-5.jpg', wide: true, exibir: this.pageRegistros },
-    { src: 'assets/img/gallery/gallery-6.jpg', wide: true, exibir: this.pageRegistros },
-    { src: 'assets/img/gallery/gallery-7.jpg', wide: false, exibir: true },
-    { src: 'assets/img/gallery/gallery-9.jpg', wide: true, exibir: this.pageRegistros },
-    { src: 'assets/img/gallery/gallery-12.jpg', wide: true, exibir: this.pageRegistros },
+    { src: 'assets/img/gallery/gallery-3.jpg', wide: true, exibir: false },
+    { src: 'assets/img/gallery/gallery-4.jpg', wide: true, exibir: false },
+    { src: 'assets/img/gallery/gallery-5.jpg', wide: true, exibir: false },
+    { src: 'assets/img/gallery/gallery-6.jpg', wide: true, exibir: false },
+    { src: 'assets/img/gallery/gallery-9.jpg', wide: true, exibir: false },
+    { src: 'assets/img/gallery/gallery-12.jpg', wide: true, exibir: false },
     { src: 'assets/img/gallery/gallery-11.jpg', wide: false, exibir: true },
     { src: 'assets/img/gallery/gallery-8.jpg', wide: false, exibir: true },
     { src: 'assets/img/gallery/gallery-10.jpg', wide: false, exibir: true },
+    { src: 'assets/img/gallery/gallery-7.jpg', wide: false, exibir: true },
     { src: 'assets/img/gallery/gallery-13.jpg', wide: true, exibir: true },
-    { src: 'assets/img/gallery/gallery-14.jpg', wide: true, exibir: this.pageRegistros },
-    { src: 'assets/img/gallery/gallery-15.jpg', wide: true, exibir: this.pageRegistros },
-    { src: 'assets/img/gallery/gallery-16.jpg', wide: true, exibir: this.pageRegistros },
-    { src: 'assets/img/gallery/gallery-17.jpg', wide: true, exibir: this.pageRegistros },
+    { src: 'assets/img/gallery/gallery-14.jpg', wide: true, exibir: false },
+    { src: 'assets/img/gallery/gallery-15.jpg', wide: true, exibir: false },
+    { src: 'assets/img/gallery/gallery-16.jpg', wide: true, exibir: false },
+    { src: 'assets/img/gallery/gallery-17.jpg', wide: true, exibir: false },
   ];
 
   openModal(imageSrc: string) {
