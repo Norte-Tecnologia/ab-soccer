@@ -10,9 +10,9 @@
       <div class="col-lg-6">
         <div class="table-controls">
           <ul>
-            <li class="active" data-tsfilter="all">Todos os eventos</li>
-            <li data-tsfilter="fitness">Treinamentos</li>
-            <li data-tsfilter="motivation">Jogos do campeonato</li>
+            <li [class.active]="currentFilter === 'all'" (click)="setFilter('all')">Todos os eventos</li>
+            <li [class.active]="currentFilter === 'treinamento'" (click)="setFilter('treinamento')">Treinamentos</li>
+            <li [class.active]="currentFilter === 'campeonato'" (click)="setFilter('campeonato')">Jogos do campeonato</li>
           </ul>
         </div>
       </div>
@@ -24,78 +24,22 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
-                <th>Domingo</th>
+                <th *ngFor="let day of daysOfWeek">{{day}}</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="class-time">6:00h - 8:00h</td>
-                <td class="dark-bg hover-bg ts-meta">
-                  <h5>TREINO + RODADA BRASILEIRÃO AB</h5>
-                  <span>Complexo esportivo JP</span>
+              <tr *ngFor="let schedule of scheduleData">
+                <td class="class-time">{{schedule.time}}</td>
+                <td *ngFor="let day of daysOfWeek; let i = index"
+                    [class.dark-bg]="isDarkBg(i)"
+                    [class.hover-bg]="schedule.days[day] && shouldDisplayItem(schedule.days[day]?.type)"
+                    [class.ts-meta]="schedule.days[day] && shouldDisplayItem(schedule.days[day]?.type)"
+                    [class.blank-td]="!schedule.days[day] || !shouldDisplayItem(schedule.days[day]?.type)">
+                  <div *ngIf="schedule.days[day] && shouldDisplayItem(schedule.days[day]?.type)">
+                    <h5>{{schedule.days[day]?.title}}</h5>
+                    <span>{{schedule.days[day]?.location}}</span>
+                  </div>
                 </td>
-                <td class="hover-bg ts-meta">
-                  <h5>TREINO + RODADA BRASILEIRÃO AB</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="dark-bg hover-bg ts-meta">
-                  <h5>RODADA DUPLA BRASILEIRÃO AB</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="hover-bg ts-meta">
-                  <h5>TREINO + RODADA BRASILEIRÃO AB</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="dark-bg hover-bg ts-meta">
-                  <h5>TREINO + RODADA BRASILEIRÃO AB</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="blank-td"></td>
-                <td class="dark-bg blank-td"></td>
-              </tr>
-              <tr>
-                <td class="class-time">12:30h - 14:00h</td>
-                <td class="dark-bg hover-bg ts-meta">
-                  <h5>TREINO</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="hover-bg ts-meta">
-                  <h5>TREINO</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="dark-bg blank-td"></td>
-                <td class="hover-bg ts-meta">
-                  <h5>TREINO</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="dark-bg hover-bg ts-meta">
-                  <h5>TREINO</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="blank-td"></td>
-                <td class="dark-bg blank-td"></td>
-              </tr>
-              <tr>
-                <td class="class-time">19:00h - 20:00h</td>
-                <td class="dark-bg blank-td"></td>
-                <td class="hover-bg ts-meta">
-                  <h5>TREINO</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="dark-bg hover-bg ts-meta">
-                  <h5>TREINO</h5>
-                  <span>Complexo esportivo JP</span>
-                </td>
-                <td class="blank-td"></td>
-                <td class="dark-bg blank-td"></td>
-                <td class="blank-td"></td>
-                <td class="dark-bg blank-td"></td>
               </tr>
             </tbody>
           </table>

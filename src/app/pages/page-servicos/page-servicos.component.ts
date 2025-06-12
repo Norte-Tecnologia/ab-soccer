@@ -4,11 +4,12 @@ import { PageBreadcrumbHeaderComponent } from '../../../shared/components/page-b
 import { ElevandoNivelComponent } from "../../../shared/components/elevando-nivel/elevando-nivel.component";
 import { PlanosComponent } from "../../../shared/components/planos/planos.component";
 import { PlayVideoComponent } from "../../../shared/components/play-video/play-video.component";
+import { HorariosComponent } from "../../../shared/components/horarios/horarios.component";
 
 
 @Component({
   selector: 'app-page-servicos',
-  imports: [LoadingComponent, PageBreadcrumbHeaderComponent, ElevandoNivelComponent, PlanosComponent, PlayVideoComponent],
+  imports: [LoadingComponent, PageBreadcrumbHeaderComponent, ElevandoNivelComponent, PlanosComponent, PlayVideoComponent, HorariosComponent],
   templateUrl: './page-servicos.component.html',
   styleUrl: './page-servicos.component.scss'
 })
