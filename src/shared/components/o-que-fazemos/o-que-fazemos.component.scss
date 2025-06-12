@@ -1,0 +1,36 @@
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.barfiller {
+  flex-grow: 1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+
+  .fill {
+    display: block;
+    position: relative;
+    width: 0;
+    height: 100%;
+    background: #ffffff;
+    z-index: 1;
+    animation: progressBar 2s ease-in-out forwards;
+  }
+}
+
+.percentage-text {
+  color: white;
+  font-size: 14px;
+  min-width: 40px;
+  text-align: right;
+}
+
+@keyframes progressBar {
+  0% { width: 0; }
+  100% { width: 100%; }
+}

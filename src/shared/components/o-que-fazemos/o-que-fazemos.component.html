@@ -29,31 +29,13 @@
             </p>
           </div>
           <div class="about-bar">
-            <div class="ab-item">
-              <p>Desenvolvimento físico</p>
-              <div id="bar1" class="barfiller">
-                <span class="fill" data-percentage="100"></span>
-                <div class="tipWrap">
-                  <span class="tip"></span>
+            <div class="ab-item" *ngFor="let item of progressValues">
+              <p>{{item.text}}</p>
+              <div class="progress-container">
+                <div [id]="item.id" class="barfiller">
+                  <span class="fill" data-percentage="100"></span>
                 </div>
-              </div>
-            </div>
-            <div class="ab-item">
-              <p>Desenvolvimento técnico</p>
-              <div id="bar2" class="barfiller">
-                <span class="fill" data-percentage="100"></span>
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
-              </div>
-            </div>
-            <div class="ab-item">
-              <p>Acompanhamento completo</p>
-              <div id="bar3" class="barfiller">
-                <span class="fill" data-percentage="100"></span>
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
+                <span class="percentage-text">{{item.value}}%</span>
               </div>
             </div>
           </div>
