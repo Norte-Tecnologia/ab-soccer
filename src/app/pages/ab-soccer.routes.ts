@@ -11,7 +11,7 @@ import { NotFoundComponent } from '../../shared/components/not-found/not-found.c
 export const PORTAL: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    component: HomeComponent,
     pathMatch: 'full'
   },
   {

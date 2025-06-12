@@ -1,17 +1,17 @@
 <div class="offcanvas-menu-overlay"></div>
 <div class="offcanvas-menu-wrapper">
   <div class="canvas-close">
-    <i class="fa fa-times"></i> <!-- Mudança: fa-close não existe, usar fa-times -->
+    <i class="fa fa-times"></i>
   </div>
 
   <nav class="canvas-menu mobile-menu">
     <ul>
-      <li><a [routerLink]="['/']">Início</a></li>
-      <li><a [routerLink]="['/sobre']">Sobre nós</a></li>
-      <li><a [routerLink]="['/servicos']">Serviços</a></li>
-      <li><a [routerLink]="['/time']">Nosso super time</a></li>
-      <li><a [routerLink]="['/registros']">Registros</a></li>
-      <li><a [routerLink]="['/contato']">Contato</a></li>
+      <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Início</a></li>
+      <li><a [routerLink]="['/sobre']" routerLinkActive="active">Sobre nós</a></li>
+      <li><a [routerLink]="['/servicos']" routerLinkActive="active">Serviços</a></li>
+      <li><a [routerLink]="['/time']" routerLinkActive="active">Nosso super time</a></li>
+      <li><a [routerLink]="['/registros']" routerLinkActive="active">Registros</a></li>
+      <li><a [routerLink]="['/contato']" routerLinkActive="active">Contato</a></li>
     </ul>
   </nav>
   <div id="mobile-menu-wrap"></div>
@@ -31,7 +31,7 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="logo">
-          <a [routerLink]="['/']"> <!-- Mudança: usar routerLink em vez de href -->
+          <a [routerLink]="['/']">
             <img src="assets/img/logo.png" alt="AB Soccer Logo" width="180">
           </a>
         </div>
@@ -39,12 +39,13 @@
       <div class="col-lg-6">
         <nav class="nav-menu">
           <ul>
-            <li><a [routerLink]="['/']">Início</a></li>
-            <li><a [routerLink]="['/sobre']">Sobre nós</a></li>
-            <li><a [routerLink]="['/servicos']">Serviços</a></li>
-            <li><a [routerLink]="['/time']">Nosso super time</a></li>
-            <li><a [routerLink]="['/registros']">Registros</a></li>
-            <li><a [routerLink]="['/contato']">Contato</a></li>
+            <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Início</a>
+            </li>
+            <li><a [routerLink]="['/sobre']" routerLinkActive="active">Sobre nós</a></li>
+            <li><a [routerLink]="['/servicos']" routerLinkActive="active">Serviços</a></li>
+            <li><a [routerLink]="['/time']" routerLinkActive="active">Nosso super time</a></li>
+            <li><a [routerLink]="['/registros']" routerLinkActive="active">Registros</a></li>
+            <li><a [routerLink]="['/contato']" routerLinkActive="active">Contato</a></li>
           </ul>
         </nav>
       </div>
