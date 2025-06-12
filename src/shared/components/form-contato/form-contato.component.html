@@ -9,7 +9,7 @@
         <div class="contact-widget">
           <div class="cw-text">
             <a href="https://wa.me/5591984644819?text=Olá, gostaria de conversar sobre os treinos." target="_blank"><i
-                class="fa fa-whatsapp"></i></a>
+                class="fab fa-whatsapp"></i></a>
             <p>WhatsApp</p>
           </div>
           <div class="cw-text">
@@ -23,44 +23,51 @@
             </ul>
           </div>
           <div class="cw-text email">
-            <i class="fa fa-instagram"></i>
+            <i class="fab fa-instagram"></i>
             <p>ab.soccer</p>
           </div>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="leave-comment">
-          <form action="https://formsubmit.co/lhenrique.lh000@gmail.com" method="POST">
+          <form [formGroup]="contactForm" (ngSubmit)="enviarEmail()">
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Seu nome">
+                  <input type="text" class="form-control" formControlName="nome" id="name" placeholder="Your Name">
+                  <label for="name">Seu nome</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Seu email">
+                  <input type="email" class="form-control" formControlName="email" id="email" placeholder="Your Email">
+                  <label for="email">Seu Email</label>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="_subject" id="subject" placeholder="Assunto">
+                  <input type="text" class="form-control" formControlName="assunto" id="subject" placeholder="Subject">
+                  <label for="subject">Assunto</label>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-floating">
-                  <textarea class="form-control" name="message" placeholder="Digite a sua mensagem" id="message"
-                    style="height: 100px"></textarea>
+                  <textarea class="form-control" formControlName="mensagem" placeholder="Leave a message here"
+                    id="message" style="height: 100px"></textarea>
+                  <label for="message">Mensagem</label>
                 </div>
               </div>
-              <input type="hidden" name="_next" value="/index.html">
-              <input type="hidden" name="_autoresponse"
-                value="Obrigado por entrar em contato! Iremos avaliar a sua solicitação e responderemos logo logo.">
-              <input type="hidden" name="_template" value="table">
               <div class="col-12">
-                <button class="btn btn-outline-primary py-2 px-3 me-3" type="submit">
+                <button class="btn btn-outline-primary py-2 px-3 me-3" type="submit"
+                  [disabled]="isLoading || contactForm.invalid">
+                  @if (isLoading) {
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  <span class="visually-hidden">Loading...</span>
+                  } @else {
                   Envie a mensagem
+                  }
                   <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
+                    <i class="fa fa-arrow-right"></i>
                   </div>
                 </button>
               </div>

@@ -1,0 +1,14 @@
+@use "../../../shared//styles/colors.scss" as colors;
+
+.form-floating label {
+  color: colors.$color-white !important;
+}
+
+button {
+  border: 1px solid colors.$color-white !important;
+  color: colors.$color-white !important;
+}
+
+i {
+  color: colors.$color-dark-blue;
+}
